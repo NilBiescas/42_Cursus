@@ -1,2 +1,2 @@
 # Projects
-Firts Projects in my learning processe
+Firts Projects in my learning process
