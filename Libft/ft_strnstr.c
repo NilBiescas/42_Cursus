@@ -6,30 +6,38 @@
 /*   By: nbiescas <nbiescas@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 16:36:02 by nbiescas          #+#    #+#             */
-/*   Updated: 2023/02/06 18:24:45 by nbiescas         ###   ########.fr       */
+/*   Updated: 2023/03/07 12:26:54 by nbiescas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strnstr(const char *str, const char *srch, size_t n)
 {
-	int		hays;
-	size_t	nedl_len;
-	int		max_len;
+	size_t	i;
+	size_t	j;
+	char	*t_str;
+	char	*t_srch;
 
-	if (!*needle)
-		return ((char *)haystack);
-	hays = 0;
-	nedl_len = strlen(needle);
-	max_len = (int)(len - nedl_len);
-	while (haystack[hays] && (hays <= max_len))
+	i = 0;
+	j = 0;
+	t_str = (char *)str;
+	t_srch = (char *)srch;
+	if (t_srch[j] == '\0')
+		return (t_str);
+	while (t_str[i] && i < n)
 	{
-		if (strncmp(&haystack[hays], needle, nedl_len) == 0)
-			return ((char *)&haystack[hays]);
-		hays++;
+		j = 0;
+		if (t_str[i] == t_srch[j])
+		{
+			while (t_srch[j] && (i + j < n) && (t_str[i + j] == t_srch[j]))
+				j++;
+			if (t_srch[j] == '\0')
+				return (&t_str[i]);
+		}
+		i++;
 	}
-	return ((char *) '\0');
+	return (0);
 }
 /*
 int main (int argc, char **argv)

@@ -6,11 +6,11 @@
 /*   By: nbiescas <nbiescas@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:08:49 by nbiescas          #+#    #+#             */
-/*   Updated: 2023/01/31 11:12:40 by nbiescas         ###   ########.fr       */
+/*   Updated: 2023/02/17 11:08:19 by nbiescas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 int	ft_tolower(int c)
 {

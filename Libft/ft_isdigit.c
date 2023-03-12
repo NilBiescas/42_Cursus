@@ -6,11 +6,11 @@
 /*   By: nbiescas <nbiescas@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:15:15 by nbiescas          #+#    #+#             */
-/*   Updated: 2023/02/02 19:05:09 by nbiescas         ###   ########.fr       */
+/*   Updated: 2023/02/17 11:11:03 by nbiescas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 int	ft_isdigit(int a)
 {

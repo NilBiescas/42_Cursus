@@ -6,30 +6,16 @@
 /*   By: nbiescas <nbiescas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 16:25:03 by nbiescas          #+#    #+#             */
-/*   Updated: 2023/02/07 17:00:46 by nbiescas         ###   ########.fr       */
+/*   Updated: 2023/02/21 09:55:26 by nbiescas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "libft.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*ptr;
-
-	ptr = malloc((len + 1) * sizeof(char));
-	if (*ptr)
-		return (NULL);
-	strlcpy(ptr, &s[start], len + 1);
-	return (ptr);
-}
-
-int	get_words(char const *s, char c)
+static size_t	get_words(char const *s, char c)
 {
 	size_t	index;
-	int		count;
+	size_t	count;
 
 	index = 0;
 	count = 0;
@@ -42,56 +28,73 @@ int	get_words(char const *s, char c)
 	return (count);
 }
 
-size_t get_next_char(char const *s, char c)
+static void	ft_free(char **list_string)
 {
-	size_t	index;
+	size_t	i;
 
-	index = 0;
-	while (s[index] == c && s[index] != '\0')
-		index++;
-	return (index);
+	i = 0;
+	while (list_string[i])
+	{
+		free(list_string[i]);
+		list_string[i] = NULL;
+		i++;
+	}
+	free(list_string);
 }
 
-
-size_t	char_words(char const *s, char c)
+static char	**words(char **list_string, char const *s, char c)
 {
-	size_t	index;
-
-	index = 0;
-	while (s[index] != '\0' && s[index] != c)
-		index++;
-	return (index);
-}
-
-char    **ft_split(char const *s, char c)
-{
-    char 	**list_string;
-	size_t	words;
-	size_t	index;
-	size_t	len_word;
+	size_t	i;
+	size_t	start;
 	size_t	pos;
 
-	len_word = 0;
-	index = 0;
 	pos = 0;
-	words = get_words(s, c);
-	list_string = malloc(sizeof(char *) * (words + 1));
-	while (pos < (words))
+	start = 0;
+	i = 0;
+	while (s[i])
 	{
-		index = index + get_next_char(&s[index], c);
-		len_word = char_words(&s[index], c);
-		list_string[pos] = ft_substr(&s[index], 0, len_word);
-		index = index + len_word;
-		pos++;
-	}
+		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
+		{
+			list_string[pos] = ft_substr(s, start, i - start + 1);
+			if (list_string[pos] == NULL)
+			{		
+				ft_free(list_string);
+				return (0);
+			}
+			pos++;
+		}
+		if (s[i] == c && (s[i + 1] != c || s[i + 1] != '\0'))
+			start = i + 1;
+		i++;
+	}	
 	list_string[pos] = NULL;
-    return (list_string);
+	return (list_string);
 }
 
+char	**ft_split(char const *s, char c)
+{
+	char	**list_string;
+	size_t	pos;
+
+	pos = 0;
+	if (!s)
+		return (0);
+	list_string = malloc((get_words(s, c) + 1) * sizeof(char *));
+	if (!list_string)
+		return (NULL);
+	list_string = words(list_string, s, c);
+	return (list_string);
+}
+
+/*
+ * Chech s and the creation of memory for list_string. After that call
+ * words. Advanced the pointer at each character keeping track of the start
+ * of a word and the end of it. At eacch word call ft_substr() if the 
+ * allocations does not succed call ft_free and free the memory.
 int main(int argc, char **argv)
 {
 	char **words;
-
+	argc = 0;
 	words = ft_split(argv[1], argv[2][0]);
 	while (*words != NULL)
 	{
@@ -100,4 +103,4 @@ int main(int argc, char **argv)
 	}
 	printf("%s \n", (*words));
 	return (0);
-}
+}*/

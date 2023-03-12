@@ -6,36 +6,39 @@
 /*   By: nbiescas <nbiescas@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:37:51 by nbiescas          #+#    #+#             */
-/*   Updated: 2023/02/02 20:41:55 by nbiescas         ###   ########.fr       */
+/*   Updated: 2023/02/21 09:55:34 by nbiescas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <libft.h>
+
+#include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {
-	size_t		len_s;
-	const char	*ptr_char;
+	size_t		index;
 
-	ptr_char = (const char *) '\0';
-	len_s = strlen(s) + 1;
-	while (len_s)
+	index = 0;
+	while (s[index])
 	{
-		if ((char)*s == (char)c)
-		{	
-			ptr_char = s;
-			return ((char *)ptr_char);
-		}
-		s++;
-		len_s--;
+		if (s[index] == (char)c)
+			break ;
+		index++;
 	}
-	return ((char *)ptr_char);
+	if (s[index] == (char)c)
+		return ((char *)&s[index]);
+	return ((char *)0);
 }
 
 /*
+ * Iterate the string until null termianted character. If we find the match
+ * go out and return the postion.
+ * If the run the process until the null terimanted character
+ * check if what we are looking is the null character or it means that the 
+ * character is not in the string.
+ 
 int main(int argc, char **argv)
 {
 
-	printf("%p \n", ft_strchr(argv[1], '\0'));
-	printf("%p \n", strchr(argv[1], '\0'));
+	printf("%s \n", ft_strchr(argv[1], argv[2][0]));
+	printf("%s \n", strchr(argv[1], argv[2][0]));
 	return (0);
 }*/

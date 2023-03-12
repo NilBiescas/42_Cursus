@@ -6,7 +6,7 @@
 /*   By: nbiescas <nbiescas@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 19:45:13 by nbiescas          #+#    #+#             */
-/*   Updated: 2023/02/02 18:59:48 by nbiescas         ###   ########.fr       */
+/*   Updated: 2023/02/21 10:24:26 by nbiescas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,18 @@
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t		index;
-	char		*dest;
+	char		*desti;
 	const char	*source;
 
 	if (!dst && !src)
 		return (NULL);
-	dest = dst;
+	index = 0;
+	desti = dst;
 	source = src;
-	while (*dest != '\0' && *source != '\0' && n)
+	while (index < n)
 	{
-		*dest = *source;
-		dest++;
-		source++;
-		n--;
+		desti[index] = source[index];
+		index++;
 	}
 	return (dst);
 }

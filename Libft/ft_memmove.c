@@ -6,24 +6,22 @@
 /*   By: nbiescas <nbiescas@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 18:32:23 by nbiescas          #+#    #+#             */
-/*   Updated: 2023/02/02 19:04:32 by nbiescas         ###   ########.fr       */
+/*   Updated: 2023/03/07 10:54:03 by nbiescas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	char		*destino;
 	const char	*source;
 
-	if (!dst && !src)
-		return (NULL);
 	destino = dst;
 	source = src;
 	if (destino < source)
 		dst = ft_memcpy(dst, src, len);
-	else if (destino == source)
+	else if (destino > source)
 	{
 		while (len > 0)
 		{

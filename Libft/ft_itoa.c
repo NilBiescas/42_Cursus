@@ -6,86 +6,65 @@
 /*   By: nbiescas <nbiescas@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:16:50 by nbiescas          #+#    #+#             */
-/*   Updated: 2023/02/07 19:23:07 by nbiescas         ###   ########.fr       */
+/*   Updated: 2023/03/07 12:50:36 by nbiescas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "libft.h"
-#define _OPEN_SYS_ITOA_EXT
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "libft.h"
 
-size_t	len_int(int n)
-{	
-	int len_n;
-
-	len_n = 0;
-	while (n)
-	{
-		n = n / 10;
-		len_n++;
-	}
-	return (len_n);
-}
-
-char *reverse(char *ptr)
+int	ft_lenitoa(int n)
 {
-	size_t	index;
-	size_t	index2;
-	char	*second;
-	char	aux;
+	int	len;
 
-	aux = 0;
-	index = 0; 
-	index2 = 0;
-	second = ptr;
-	while(second[index2 + 1])
-		index2++;
-	while (&ptr[index] < &second[index2])
-	{
-		aux = ptr[index];
-		ptr[index] = second[index2];
-		second[index2] = aux;
-		index++;
-		index2--;
-	}
-	return (ptr);
-}
-
-char *ft_itoa(int n)
-{
-	char	*ptr;
-	size_t	index;
-	int		len_n;
-	size_t	bol;
-
-	bol = 0;
-	index = 0;
+	len = 0;
+	if (n == 0)
+		return (1);
 	if (n < 0)
-	{
-		n *= -1;
-		bol = 1;
-	}
-	len_n = len_int(n);
-	ptr = malloc(sizeof(char) * (len_n + 1 + bol));
-	if (!ptr)
-		return (NULL);
+		len = 1;
 	while (n)
 	{
-		ptr[index] = (n % 10) + 48;
 		n = n / 10;
-		index++;
+		len++;
 	}
-	if (bol)
-		ptr[index++] = '-';
-	ptr[index] = '\0';
-	ptr = reverse(ptr);
-	return (ptr);
+	return (len);
 }
 
+int	ft_nummax(int n)
+{
+	if (n < 0)
+		n = -n;
+	return (n);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*result;
+	int		len;
+	int		mod;
+
+	mod = 0;
+	len = ft_lenitoa(n);
+	result = (char *)malloc(sizeof(char) * (len + 1));
+	if (!result)
+		return (NULL);
+	result[len] = '\0';
+	if (n == 0)
+		result[0] = '0';
+	else if (n < 0)
+		result[0] = '-';
+	while (n)
+	{
+		len--;
+		mod = ft_nummax(n % 10);
+		result[len] = mod + '0';
+		n = n / 10;
+	}
+	return (result);
+}
+
+/*
 int main(int argc, char **argv)
 {
 	printf("%s \n", ft_itoa(atoi(argv[1])));
 	return (0);
-}
+}*/
