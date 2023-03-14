@@ -1,0 +1,22 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    answers.txt                                        :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: nbiescas <nbiescas@student.42barcel>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/03/14 09:17:29 by nbiescas          #+#    #+#              #
+#    Updated: 2023/03/14 09:26:13 by nbiescas         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+Mostrar una lista de los paquetes instalados y sus versiones
+pip list
+Mostrar los metadatos del paquete numpy
+pip show numpy
+Elimina el paquete numpy
+conda remove numpy
+Reinstala el paquete numpy
+conda install numpy
+Congelar los paquetes de python y sus versiones y ponerlas en un archivi .txt
+pip freze > requirments.txt
