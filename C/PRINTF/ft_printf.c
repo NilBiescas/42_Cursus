@@ -75,11 +75,11 @@ int ft_printf(char const *sentence, ...)
     va_end(args);
     return (size);
 }
-
+/* 
 int main(int argc, char **argv)
 {
     int se = ft_printf(argv[1], ft_atoi(argv[2]));
-    int ls = printf(argv[1], ft_atoi(argv[2]));
+    //int ls = printf(argv[1], ft_atoi(argv[2]));
 
     return (0);
-}
+}*/
