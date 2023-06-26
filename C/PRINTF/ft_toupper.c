@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_libft.h                                         :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbiescas <nbiescas@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 10:47:40 by nbiescas          #+#    #+#             */
-/*   Updated: 2023/05/02 12:57:16 by nbiescas         ###   ########.fr       */
+/*   Created: 2023/01/31 11:03:03 by nbiescas          #+#    #+#             */
+/*   Updated: 2023/02/17 11:08:05 by nbiescas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include <stdlib.h>
-
-int		ft_printf(char const *sentence, ...);
-int		formats(char conv, va_list args);
-int		print_char(int c);
-int		ft_putstr(char *argument);
-int		print_address(void *adress);
-int		hexadecimal_conversion(unsigned long num, char upper);
-char	*ft_itoa(long long n);
-int		ft_toupper(int c);
-
-#endif
+int	ft_toupper(int c)
+{
+	if (c >= 97 && c <= 122)
+		c = c - 32;
+	return (c);
+}
